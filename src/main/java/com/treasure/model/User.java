@@ -22,6 +22,8 @@ public class User {
 	
 	private String rememberPwd;
 	
+	private String sendEmail;
+	
 	private String level;
 	
 	private String department;

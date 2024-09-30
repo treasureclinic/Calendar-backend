@@ -17,6 +17,8 @@ public class EventData {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer eventId;
 	
+	String reservationDate;
+	
 	String reservationStartTime;
 	
 	String reservationEndTime;
@@ -35,6 +37,8 @@ public class EventData {
 	
 	String instrumentCheck;
 	
+	String doctor;
+	
 	String nurse;
 	
 	String remark;
@@ -46,6 +50,8 @@ public class EventData {
 	String lastDate;
 	
 	String lastTime;
+	
+	String backgroundColor;
 	
 	String status;
 }

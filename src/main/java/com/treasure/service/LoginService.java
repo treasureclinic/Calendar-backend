@@ -19,13 +19,13 @@ public class LoginService {
 	@Autowired
 	private SecurityConfig securityConfig;
 
-	public String loginUser(String username, String password) {
+	public User loginUser(String username, String password) {
 		
 	    User user = userRepository.findByUsername(username);
 	    
 	    if (user == null) {
 	    	
-	    	return "0"; // 查無userId
+	    	return null; // 查無userId
 	    	
 	    } else if (securityConfig.matches(password, user.getPasswordHash())) {
 	    	// 登入後改寫登入時間
@@ -35,10 +35,10 @@ public class LoginService {
 	    	user.setSignInTime(timestamp.substring(8, 14));
 	    	
 	    	userRepository.save(user);
-	    	return "1"; // 登入成功
+	    	return user; // 登入成功
 	    }
 	    
-	    return "2"; // 密碼不符
+	    return null; // 密碼不符
 	}
 	
 	public String signOut(String username) {

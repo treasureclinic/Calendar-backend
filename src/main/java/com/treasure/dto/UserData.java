@@ -18,4 +18,6 @@ public class UserData {
 	String level;
 	
 	String rememberPwd;
+	
+	String sendEmail;
 }

@@ -44,25 +44,31 @@ public class LoginController {
 	private UserRepository uRepository;
 	
 	@PostMapping("/loginCheckout")
-	public String loginCheckout(@RequestBody String data) {
-		
-		String result;
+	public UserData loginCheckout(@RequestBody String data) {
 		
 		try {
 			
 			LoginForm loginForm = gson.fromJson(data, LoginForm.class);
 			
-			result = lService.loginUser(loginForm.getUsername(), loginForm.getPassword());
+			User user = lService.loginUser(loginForm.getUsername(), loginForm.getPassword());
+			
+			return new UserData(
+					user.getUserId(), 
+					user.getUsername(), 
+					user.getEmail(), 
+					user.getDepartment(), 
+					user.getLevel(), 
+					user.getRememberPwd(),
+					user.getSendEmail()
+					);
 			
 		} catch (Exception e) {
-			
-			result = "9";
 			
 			e.printStackTrace();
 			
 		} 
 		
-		return result;
+		return null;
 	}
 	
 	@PostMapping("/signOut")
@@ -117,7 +123,8 @@ public class LoginController {
 					user.getEmail(),
 					user.getDepartment(),
 					user.getLevel(),
-					user.getRememberPwd()
+					user.getRememberPwd(),
+					user.getSendEmail()
 							)
 					);
 		}
@@ -138,7 +145,8 @@ public class LoginController {
 				user.getEmail(), 
 				user.getDepartment(), 
 				user.getLevel(), 
-				user.getRememberPwd()
+				user.getRememberPwd(),
+				user.getSendEmail()
 				);
 		
 	}
