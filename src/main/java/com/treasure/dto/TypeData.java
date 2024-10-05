@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class WebSocketMessage {
+public class TypeData {
 	
-	String mode;
+	String username;
 	
-	String message;
+	String param;
 	
-	String time;
+	String type;
 	
 }

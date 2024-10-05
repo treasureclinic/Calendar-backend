@@ -20,4 +20,6 @@ public class UserData {
 	String rememberPwd;
 	
 	String sendEmail;
+	
+	String status;
 }

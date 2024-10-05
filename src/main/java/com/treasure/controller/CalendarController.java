@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.treasure.model.EventData;
+import com.treasure.model.User;
 import com.treasure.repository.EventDataRepository;
+import com.treasure.repository.UserRepository;
+import com.treasure.service.EmailService;
 import com.treasure.service.EventService;
 
 @RestController
@@ -23,7 +26,13 @@ public class CalendarController {
 	private EventService eService;
 	
 	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
 	private EventDataRepository eRepository;
+	
+	@Autowired
+	private UserRepository uRepository;
 	
 	@PostMapping("/saveEventData")
 	public EventData saveEventData(@RequestBody String data) {
@@ -35,6 +44,11 @@ public class CalendarController {
 			eService.saveEventData(eventData);
 			
 			// 發送email通知
+			User consultant = uRepository.findByUsername(eventData.getConsultant());
+			
+			if (consultant.getSendEmail().equals("1")) {
+				emailService.sendEventDataEmail(consultant, eventData);
+			}
 			
 			
 		} catch (Exception e) {

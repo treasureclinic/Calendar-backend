@@ -23,6 +23,6 @@ public interface UserRepository extends CrudRepository<User, String> {
     @Query("SELECT u FROM User u WHERE SUBSTRING(u.userId, 1, 3) = :userIdSubstring ORDER BY u.userId")
     List<User> findUsersByUserIdSubstring(@Param("userIdSubstring") String userIdSubstring);
     
-    @Query("SELECT u FROM User u WHERE u.status = '0' ORDER BY u.userId")
+    @Query("SELECT u FROM User u ORDER BY u.userId")
     ArrayList<User> findUsers();
 }

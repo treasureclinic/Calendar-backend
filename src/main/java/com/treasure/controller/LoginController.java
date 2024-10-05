@@ -10,15 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.treasure.dto.LoginForm;
-import com.treasure.dto.SignUpForm;
 import com.treasure.dto.UserData;
 import com.treasure.model.User;
 import com.treasure.repository.UserRepository;
 //import com.treasure.service.EmailService;
 import com.treasure.service.LoginService;
-import com.treasure.service.UserService;
-//import com.treasure.service.VerificationRecordService;
-import com.treasure.service.WebSocketService;
 
 @RestController
 public class LoginController {
@@ -26,19 +22,7 @@ public class LoginController {
 	private final Gson gson = new Gson();
 	
 	@Autowired
-	private UserService uService;
-	
-	@Autowired
 	private LoginService lService;
-	
-//	@Autowired
-//	private EmailService emailService;
-	
-//	@Autowired
-//	private VerificationRecordService vrService;
-	
-	@Autowired
-	private WebSocketService webSocketService;
 	
 	@Autowired
 	private UserRepository uRepository;
@@ -59,7 +43,8 @@ public class LoginController {
 					user.getDepartment(), 
 					user.getLevel(), 
 					user.getRememberPwd(),
-					user.getSendEmail()
+					user.getSendEmail(),
+					user.getStatus()
 					);
 			
 		} catch (Exception e) {
@@ -124,7 +109,8 @@ public class LoginController {
 					user.getDepartment(),
 					user.getLevel(),
 					user.getRememberPwd(),
-					user.getSendEmail()
+					user.getSendEmail(),
+					user.getStatus()
 							)
 					);
 		}
@@ -146,19 +132,10 @@ public class LoginController {
 				user.getDepartment(), 
 				user.getLevel(), 
 				user.getRememberPwd(),
-				user.getSendEmail()
+				user.getSendEmail(),
+				user.getStatus()
 				);
 		
 	}
 	
-	
-	@PostMapping("/signUp")
-	public boolean signUp(@RequestBody String data) {
-		
-		SignUpForm signUpForm = gson.fromJson(data, SignUpForm.class);
-		
-		uService.addNewUser(signUpForm);
-		
-		return true;
-	}
 }

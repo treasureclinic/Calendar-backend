@@ -56,5 +56,14 @@ public class TimeService {
         
         return dateTime1.isBefore(dateTime2);
 	}
-        
+      
+	public String dateString1(String dateString) {
+		
+		return dateString.substring(0, 4) + "-" + dateString.substring(4, 6) + "-" + dateString.substring(6);
+	}
+	
+	public String timeString1(String timeString) {
+		
+		return timeString.substring(0, 2) + ":" + timeString.substring(2, 4);
+	}
 }

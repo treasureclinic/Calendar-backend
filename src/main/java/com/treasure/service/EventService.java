@@ -5,14 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.treasure.model.EventData;
 import com.treasure.repository.EventDataRepository;
-import com.treasure.repository.UserRepository;
 
 @Service
 public class EventService {
 
-	
-	@Autowired
-	private UserRepository userRepository;
 	
 	@Autowired
 	private EventDataRepository eventRepository;
